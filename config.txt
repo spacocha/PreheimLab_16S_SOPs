@@ -1,0 +1,14 @@
+#!/bin/sh
+
+#Add the variables here
+#has to be the full path (maybe with pwd -P to see true path). Don't use relative path
+export TMPDIR='/scratch/users/sprehei1@jhu.edu/tmp'
+
+#emp_single_dada2_10fold-chimera variables
+#Single run prefix
+PREFIX=emp-single-end-sequences
+DATA=emp-single-end-sequences
+METADATA=sample-metadata.tsv
+
+
+
