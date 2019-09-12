@@ -12,7 +12,7 @@ PREFIX=emp-single-end-sequences
 #also must be zipped
 #this should be linked to the data in the ../data/run_name folder
 #use the following: ln -s ../data/run_name/forward.fastq.gz sequences.fastq.gz
-DATA=emp-single-end-sequencesls
+DATA=emp-single-end-sequences
 #Specify path to the mapping file
 #This must be checked by the KEIMEI in google sheets and be approved QIIME2 format
 #This should be in the current working directory
