@@ -6,7 +6,7 @@
 
 module load qiime2/2018.8
 
-source user_config.txt
+source ./user_config.txt
 
 #PREFIX=emp-single-end-sequences
 #describe path to the appropriate data folder
