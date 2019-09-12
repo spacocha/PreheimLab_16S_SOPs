@@ -2,7 +2,8 @@
 #
 #SBATCH --job-name=QIIME2_single
 #SBATCH --time=72:00:00
-
+#SBATCH --partition=lrgmem
+#SBATCH --mem-per-cpu=20G
 
 module load qiime2/2018.8
 
@@ -41,7 +42,8 @@ echo "Starting demux"
 date
 echo $TMPDIR
 qiime demux emp-single --i-seqs ${PREFIX}.qza --m-barcodes-file $METADATA --m-barcodes-column BarcodeSequence --o-per-sample-sequences ${PREFIX}_demux.qza
-qiime demux summarize --i-data ${PREFIX}_demux.qza --o-visualization ${PREFIX}_demux.qzv
+qiime demux summarize --i-data ${PREFIX}_demux.qza --o-visualization ${PREFIX}_demux.qz
+
 
 #use dada2 to remove sequencing errors
 echo "Starting dada2"
