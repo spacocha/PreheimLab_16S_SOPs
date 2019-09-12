@@ -3,6 +3,9 @@
 #SBATCH --job-name=QIIME2_single
 #SBATCH --time=72:00:00
 
+
+module load qiime2/2018.8
+
 source user_config.txt
 
 #PREFIX=emp-single-end-sequences
@@ -19,8 +22,6 @@ source user_config.txt
 #This must be checked by the KEIMEI in google sheets and be approved QIIME2 format
 #This should be in the current working directory
 #METADATA=sample-metadata.tsv
-
-module load qiime2/2018.8
 
 #Make this if it doesn't already exist
 #mkdir ~/scratch/tmp
