@@ -3,7 +3,7 @@
 #SBATCH --job-name=QIIME2_single
 #SBATCH --time=72:00:00
 
-source config.sh
+source user_config.txt
 
 #PREFIX=emp-single-end-sequences
 #describe path to the appropriate data folder
