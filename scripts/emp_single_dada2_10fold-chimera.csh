@@ -41,7 +41,7 @@ qiime demux summarize --i-data ${PREFIX}_demux.qza --o-visualization ${PREFIX}_d
 #use dada2 to remove sequencing errors
 echo "Starting dada2"
 date
-qiime dada2 denoise-single --i-demultiplexed-seqs emp_single_qiime2_demux.qza --p-trim-left 23 --p-trunc-len 125 --o-representative-sequences ${PREFIX}_reps.qza --o-table ${PREFIX}_dada2.qza --o-denoising-stats ${PREFIX}_stats-dada2.qza --p-n-threads 0 --p-min-fold-parent-over-abundance 10
+qiime dada2 denoise-single --i-demultiplexed-seqs ${PREFIX}_demux.qza --p-trim-left 23 --p-trunc-len 125 --o-representative-sequences ${PREFIX}_reps.qza --o-table ${PREFIX}_dada2.qza --o-denoising-stats ${PREFIX}_stats-dada2.qza --p-n-threads 0 --p-min-fold-parent-over-abundance 10
 
 echo "End of script"
 date
