@@ -3,7 +3,7 @@
 #SBATCH --job-name=QIIME2_single
 #SBATCH --time=72:00:00
 
-PREFIX=emp_single_dada2_10fold
+PREFIX=emp-single-end-sequences
 #describe path to the appropriate data folder
 #folder should contain only two files with the names
 #barcodes.fastq.gz
@@ -12,13 +12,13 @@ PREFIX=emp_single_dada2_10fold
 #also must be zipped
 #this should be linked to the data in the ../data/run_name folder
 #use the following: ln -s ../data/run_name/forward.fastq.gz sequences.fastq.gz
-DATA=emp_single
+DATA=emp-single-end-sequencesls
 #Specify path to the mapping file
 #This must be checked by the KEIMEI in google sheets and be approved QIIME2 format
 #This should be in the current working directory
-METADATA=
+METADATA=sample-metadata.tsv
 
-module load qiime/2018.8
+module load qiime2/2018.8
 
 #Make this if it doesn't already exist
 #mkdir ~/scratch/tmp
