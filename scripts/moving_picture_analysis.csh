@@ -28,6 +28,7 @@ module load qiime2/2018.8
 #Make a tmp folder on scratch to use if it doesn't already exist
 #mkdir /scratch/users/sprehei1@jhu.edu/tmp
 #Don't use relative paths in the next line: use pwd -P for true path
+#also, do this after loading qiime
 export TMPDIR='/scratch/users/sprehei1@jhu.edu/tmp'
 
 #echo the time for each
@@ -40,7 +41,7 @@ date
 
 #echo "Starting alignment and tree"
 #date
-me phylogeny align-to-tree-mafft-fasttree --i-sequences ${REPS} --o-alignment ${PREFIX}_aligned-rep-seqs.qza --o-masked-alignment ${PREFIX}_masked-aligned-rep-seqs.qza --o-tree ${PREFIX}_unrooted-tree.qza --o-rooted-tree ${PREFIX}_rooted-tree.qza
+qiime phylogeny align-to-tree-mafft-fasttree --i-sequences ${REPS} --o-alignment ${PREFIX}_aligned-rep-seqs.qza --o-masked-alignment ${PREFIX}_masked-aligned-rep-seqs.qza --o-tree ${PREFIX}_unrooted-tree.qza --o-rooted-tree ${PREFIX}_rooted-tree.qza
 
 #alpha diversity
 echo "Starting alpha diversity"
@@ -55,7 +56,7 @@ qiime diversity core-metrics-phylogenetic \
 #group significance
 echo "Starting alpha diversity significance"
 date
-me diversity alpha-group-significance \
+qiime diversity alpha-group-significance \
   --i-alpha-diversity ${PREFIX}_core-metrics-results/faith_pd_vector.qza \
   --m-metadata-file ${METADATA} \
   --o-visualization ${PREFIX}_core-metrics-results/faith-pd-group-significance.qzv
@@ -102,3 +103,4 @@ qiime metadata tabulate \
 
 echo "End of script"
 date
+
