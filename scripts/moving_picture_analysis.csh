@@ -7,45 +7,22 @@
 #SBATCH --partition=lrgmem
 #SBATCH --mem-per-cpu=20G
 
-#Define the table and reps, either single run DADA2 output, or merged table
-TABLE=combined_dada2.qza
-REPS=combined_reps.qza
-
-#Look at the sequencing depth of the samples
-#Choose the most appropriate depth
-#Either the lowest count sample or 5000 (minimum) which ever is higher
-#Find the coverage with the 
-#qiime feature-table summarize
-DEPTH=5000
-CORE=core-metrics-single
-METADATA=sample-metadata.tsv 
-PREFIX=emp_single_MPA
-CLASSI=gg-13-8-99-515-806-nb-classifier.qza
-
 #load qiime module
 module load qiime2/2018.8
-
-#Make a tmp folder on scratch to use if it doesn't already exist
-#mkdir /scratch/users/sprehei1@jhu.edu/tmp
-#Don't use relative paths in the next line: use pwd -P for true path
-#also, do this after loading qiime
-export TMPDIR='/scratch/users/sprehei1@jhu.edu/tmp'
 
 #echo the time for each
 echo "Starting moving picture tutorial analysis"
 date
 
-#summarize
-echo "Summarize"
+echo "Starting alignment and tree"
 date
 
-#echo "Starting alignment and tree"
-#date
 qiime phylogeny align-to-tree-mafft-fasttree --i-sequences ${REPS} --o-alignment ${PREFIX}_aligned-rep-seqs.qza --o-masked-alignment ${PREFIX}_masked-aligned-rep-seqs.qza --o-tree ${PREFIX}_unrooted-tree.qza --o-rooted-tree ${PREFIX}_rooted-tree.qza
 
 #alpha diversity
 echo "Starting alpha diversity"
 date
+
 qiime diversity core-metrics-phylogenetic \
   --i-phylogeny ${PREFIX}_rooted-tree.qza \
   --i-table ${TABLE} \
@@ -56,6 +33,7 @@ qiime diversity core-metrics-phylogenetic \
 #group significance
 echo "Starting alpha diversity significance"
 date
+
 qiime diversity alpha-group-significance \
   --i-alpha-diversity ${PREFIX}_core-metrics-results/faith_pd_vector.qza \
   --m-metadata-file ${METADATA} \
@@ -81,6 +59,7 @@ qiime emperor plot \
 #alpha
 echo "Alpha rarefaction"
 date
+
 qiime diversity alpha-rarefaction \
   --i-table ${TABLE} \
   --i-phylogeny ${PREFIX}_rooted-tree.qza \
@@ -92,6 +71,7 @@ qiime diversity alpha-rarefaction \
 #taxonomy
 echo "Starting taxonomic analysis"
 date
+
 qiime feature-classifier classify-sklearn \
   --i-classifier ${CLASSI} \
   --i-reads ${REPS} \

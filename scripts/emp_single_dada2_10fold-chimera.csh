@@ -44,7 +44,7 @@ echo "Starting demux"
 date
 echo $TMPDIR
 qiime demux emp-single --i-seqs ${PREFIX}.qza --m-barcodes-file $METADATA --m-barcodes-column BarcodeSequence --o-per-sample-sequences ${PREFIX}_demux.qza
-qiime demux summarize --i-data ${PREFIX}_demux.qza --o-visualization ${PREFIX}_demux.qz
+qiime demux summarize --i-data ${PREFIX}_demux.qza --o-visualization ${PREFIX}_demux.qzv
 
 
 #use dada2 to remove sequencing errors
