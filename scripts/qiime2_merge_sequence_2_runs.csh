@@ -7,7 +7,7 @@
 module load qiime2/2018.8
 
 #make sure to edit the merge_config.txt and put into the combined directory
-source user_merge_config.txt
+source ./user_merge_config.txt
 
 #echo the time for each
 echo "Starting qiime2 two file merge"
