@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#1.) Copy this into the folder where you are working as user_single_config.txt
+#1.) Copy this into the folder where you are working
 #2.) Change the variables below according to your file names
 
 #Make sure this folder exists

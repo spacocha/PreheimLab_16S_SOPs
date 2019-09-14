@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#1.) Copy this into the folder where you are doing your analysis as user_merge_config.txt
+#1.) Copy this into the folder where you are doing your analysis
 #2.) Update the variables below according to your names
 
 #Add the variables here

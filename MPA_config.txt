@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#1.) Copy this as user_MPA_config.txt in the folder where you will do the analysis
+#1.) Copy this in the folder where you will do the analysis
 #2.) Update the variables below according to your file names
 
 #Add the variables here

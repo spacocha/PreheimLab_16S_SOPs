@@ -10,6 +10,8 @@
 #load qiime module
 module load qiime2/2018.8
 
+source ./MPA_config.txt
+
 #echo the time for each
 echo "Starting moving picture tutorial analysis"
 date
