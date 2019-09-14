@@ -15,8 +15,8 @@ date
 
 #Check TMPDIR path is working
 echo $TMPDIR
-qiime feature-table merge --i-tables ${RUN1_DADA2} --i-tables ${RUN2_DADA2} --i-tables ${RUN3_DADA2} --o-merged-table ${PREFIX}_dada2.qza
-qiime feature-table merge-seqs --i-data ${RUN1_REPS} --i-data ${RUN2_REPS} --i-data ${RUN3_REPS} --o-merged-data ${PREFIX}_reps.qza
+qiime feature-table merge --i-tables ${RUN1_DADA2} --i-tables ${RUN2_DADA2} --o-merged-table ${PREFIX}_dada2.qza
+qiime feature-table merge-seqs --i-data ${RUN1_REPS} --i-data ${RUN2_REPS} --o-merged-data ${PREFIX}_reps.qza
 
 qiime feature-table summarize --i-table ${PREFIX}_dada2.qza --o-visualization ${PREFIX}_dada2_summarize.qzv --m-sample-metadata-file ${METADATA}
 

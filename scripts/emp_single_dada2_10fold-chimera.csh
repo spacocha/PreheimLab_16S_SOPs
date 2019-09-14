@@ -9,26 +9,11 @@
 
 module load qiime2/2018.8
 
-source ./user_config.txt
+#cp single_config.txt to this folder
+#edit variables according to analysis
+#save them and this will use those in this analysis
+source ./user_single_config.txt
 
-#PREFIX=emp-single-end-sequences
-#describe path to the appropriate data folder
-#folder should contain only two files with the names
-#barcodes.fastq.gz
-#sequences.fastq.gz
-#This should be for one seuqencing run
-#also must be zipped
-#this should be linked to the data in the ../data/run_name folder
-#use the following: ln -s ../data/run_name/forward.fastq.gz sequences.fastq.gz
-#DATA=emp-single-end-sequences
-#Specify path to the mapping file
-#This must be checked by the KEIMEI in google sheets and be approved QIIME2 format
-#This should be in the current working directory
-#METADATA=sample-metadata.tsv
-
-#Make this if it doesn't already exist
-#mkdir ~/scratch/tmp
-#export TMPDIR='/scratch/users/sprehei1@jhu.edu/tmp'
 #echo the time for each
 echo "Starting qiime2 analysis"
 date
