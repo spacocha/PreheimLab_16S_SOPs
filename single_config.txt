@@ -1,14 +1,26 @@
 #!/bin/sh
 
-#Add the variables here
-#has to be the full path (maybe with pwd -P to see true path). Don't use relative path
+#1.) Copy this into the folder where you are working as user_single_config.txt
+#2.) Change the variables below according to your file names
+
+#Make sure this folder exists
+#mkdir /scratch/users/sprehei1@jhu.edu/tmp
+#add full path in single quotes below
+#has to be the full path (maybe with pwd -P in tmp to see true path). Don't use relative path
 export TMPDIR='/scratch/users/sprehei1@jhu.edu/tmp'
 
 #emp_single_dada2_10fold-chimera variables
 #Single run prefix
+#Output file names will have this in front
 PREFIX=emp-single-end-sequences
+#This is the folder with the two zipped files
+#barcodes.fastq.gz (name matters)
+#sequences.fastq.gz
 DATA=emp-single-end-sequences
+#Name of metadata file
+#Keimee checked, and qiime2 validated with google sheets
+#see QIIME2.org for details
 METADATA=sample-metadata.tsv
 
 
-
+echo "Variables imported"

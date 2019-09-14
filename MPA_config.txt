@@ -1,9 +1,14 @@
 #!/bin/sh
 
+#1.) Copy this as user_MPA_config.txt in the folder where you will do the analysis
+#2.) Update the variables below according to your file names
+
 #Add the variables here
+#This folder must exist
+#mkdir /scratch/users/sprehei1@jhu.edu/tmp
+#add that folder to the TMPDIR variable
 #has to be the full path (maybe with pwd -P to see true path). Don't use relative path
 export TMPDIR='/scratch/users/sprehei1@jhu.edu/tmp'
-
 
 #Define the table and reps, either single run DADA2 output, or merged table
 TABLE=combined_dada2.qza
@@ -15,8 +20,15 @@ REPS=combined_reps.qza
 #Find the coverage with the 
 #qiime feature-table summarize
 DEPTH=5000
+#Define prefix for core diversity metrics
 CORE=core-metrics-single
+#Name of Keimee checked, qiime2 validated mapping file (combined for multiple)
 METADATA=sample-metadata.tsv 
+#Output file name for everything but diversity core metrics
 PREFIX=emp_single_MPA
+
+#Classifier has to match the version of qiime
+#Change the 2018.8 to your version
+#wget http://data.qiime2.org/2018.8/common/gg-13-8-99-515-806-nb-classifier.qza
 CLASSI=gg-13-8-99-515-806-nb-classifier.qza
 
