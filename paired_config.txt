@@ -1,0 +1,27 @@
+#!/bin/sh
+
+#1.) Copy this into the folder where you are working
+#2.) Change the variables below according to your file names
+
+#Make sure this folder exists
+#mkdir /scratch/users/sprehei1@jhu.edu/tmp
+#add full path in single quotes below
+#has to be the full path (maybe with pwd -P in tmp to see true path). Don't use relative path
+export TMPDIR='/scratch/users/sprehei1@jhu.edu/tmp'
+
+#emp_single_dada2_10fold-chimera variables
+#Single run prefix
+#Output file names will have this in front
+PREFIX=emp-paired-end-sequences
+#This is the folder with three zipped files (names matter)
+#barcodes.fastq.gz
+#forward.fastq.gz
+#reverse.fastq.gz
+DATA=emp-paired-end-sequences
+#Name of metadata file
+#Keimee checked, and qiime2 validated with google sheets
+#see QIIME2.org for details
+METADATA=sample-metadata.tsv
+
+
+echo "Variables imported"

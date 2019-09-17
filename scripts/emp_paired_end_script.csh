@@ -1,11 +1,18 @@
 #!/bin/sh
 #
-#SBATCH --job-name=peY10fold
+##SBATCH --job-name=QIIME2_single
 #SBATCH --time=72:00:00
+#SBATCH --ntasks=5
+#SBATCH --cpus-per-task=1
+#SBATCH --partition=lrgmem
+#SBATCH --mem-per-cpu=20G
 
-PREFIX=emp_paired_qiime2_10fold
-DATA=/home-4/sprehei1@jhu.edu/scratch/EIS_dir/QIIME2_DADA2/Yue1_138658/emp-paired-end-sequences
-METADATA=/home-4/sprehei1@jhu.edu/scratch/EIS_dir/QIIME2_DADA2/Yue1_138658/Yue1_138658.txt2
+module load qiime2/2018.8
+
+#cp single_config.txt to this folder
+#edit variables according to analysis
+#save them and this will use those in this analysis
+source ./paired_config.txt
 
 #echo the time for each
 echo "Starting qiime2 analysis"
