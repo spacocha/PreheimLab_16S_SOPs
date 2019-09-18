@@ -34,5 +34,7 @@ date
 
 qiime dada2 denoise-paired --i-demultiplexed-seqs ${PREFIX}_demux.qza --p-trim-left-f 23 --p-trim-left-r 23 --p-trunc-len-f 200 --p-trunc-len-r 200 --o-representative-sequences ${PREFIX}_reps.qza --o-table ${PREFIX}_dada2.qza --o-denoising-stats ${PREFIX}_stats-dada2.qza --p-n-threads 0 --p-min-fold-parent-over-abundance 10
 
+qiime feature-table summarize --i-table ${PREFIX}_dada2.qza --o-visualization ${PREFIX}_dada2_summarize.qzv --m-sample-metadata-file ${METADATA}
+
 echo "End of script"
 date
