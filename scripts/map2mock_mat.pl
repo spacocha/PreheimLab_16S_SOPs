@@ -1,9 +1,21 @@
 #! /usr/bin/perl -w
 
-die "Usage: map2mock mat > redirect\n" unless (@ARGV);
-($map, $mat) = (@ARGV);
+die "Usage: map2mock mat concs > redirect\n" unless (@ARGV);
+($map, $mat, $concs) = (@ARGV);
 chomp ($mat);
 chomp ($map);
+chomp ($concs);
+
+#read in the concentration values
+open (IN, "<$concs") or die "Can't open $concs\n";
+while ($line=<IN>){
+	chomp ($line);
+	next unless ($line);
+	next if ($line=~/^Name/);
+	($name, $conc)=split ("\t", $line);
+	$concshash{$name}=$conc;
+}
+close (IN);
 
 open (IN, "<$map" ) or die "Can't open $map\n";
 while ($line =<IN>){
@@ -34,9 +46,14 @@ while ($line =<IN>){
 	    print "\t$piece";
 	}
 	if ($hash{$OTU}){
-	    print "\t$hash{$OTU}\n";
+		if ($concshash{$hash{$OTU}}){
+	    		print "\t$concshash{$hash{$OTU}}\t$hash{$OTU}\n";
+	    		$mockprinted{$hash{$OTU}}++;
+		} else {
+	    		print "\t0\tNA\n";
+		}
 	} else {
-	    print "\tNA\n";
+		print "\t0\tNA\n";
 	}
     } else {
 	(@headers)=@pieces;
@@ -44,7 +61,12 @@ while ($line =<IN>){
 	foreach $header (@headers){
 	    print "\t$header";
 	}
-	print "\n";
+	print "\tMock_conc\tMock_ID\n";
     }
 }
 close (IN);
+
+foreach $mock (sort keys %concshash){
+	print "NA\t0\t$concshash{$mock}\t$mock\n" unless ($mockprinted{$mock});
+}
+

@@ -16,20 +16,33 @@ source ./mock_community_analysis.config
 echo "Starting mock community analysis"
 date
 
-qiime tools export --input-path ${TABLE} --output-path ${PREFIX}_feature_table
+qiime feature-table filter-samples --i-table $TABLE --m-metadata-file ${Mock_sample}  --o-filtered-table ${TABLE}_mock_only.qza
+
+qiime tools export --input-path ${TABLE}_mock_only.qza --output-path ${PREFIX}_mock_only_feature_table
 
 qiime tools export --input-path ${REPS} --output-path ${PREFIX}_rep-seqs
 
-biom convert -i ${PREFIX}_feature_table/feature-table.biom -o ${PREFIX}_feature_table/feature-table.biom.txt --table-type "OTU table" --to-tsv
+biom convert -i ${PREFIX}_mock_only_feature_table/feature-table.biom -o ${PREFIX}_mock_only_feature_table/feature-table.biom.txt --table-type "OTU table" --to-tsv
 
 #These will only work if you have the path to scripts dir in PATH variable 
 map2mock.pl ${MOCK} ${PREFIX}_rep-seqs/dna-sequences.fasta > ${PREFIX}_rep-seqs/dna-sequences.map
 
-map2mock_mat.pl ${PREFIX}_rep-seqs/dna-sequences.map ${PREFIX}_feature_table/feature-table.biom.txt > ${PREFIX}_feature_table/feature-table.biom.map
+map2mock_mat.pl ${PREFIX}_rep-seqs/dna-sequences.map ${PREFIX}_mock_only_feature_table/feature-table.biom.txt ${FULLCONCS} > ${PREFIX}_mock_only_feature_table/feature-table.biom.fullconcs.map
 
-#Ideally you put some kind of script to make the comparison automatically, not just in excel
-#However, until that point, open the feature-table.biom.map in excell and add the known sequence values
-#Then compare observed and expected
+cp ${PREFIX}_mock_only_feature_table/feature-table.biom.fullconcs.map ./Rfile
+
+mock_corr.R 
+
+mv ./corr.txt ${PREFILE}_mock_only_feature_table/feature-table.full.corr.txt
+
+map2mock_mat.pl ${PREFIX}_rep-seqs/dna-sequences.map ${PREFIX}_mock_only_feature_table/feature-table.biom.txt ${GOODCONCS} > ${PREFIX}_mock_only_feature_table/feature-table.biom.goodconcs.map
+
+cp ${PREFIX}_mock_only_feature_table/feature-table.biom.goodconcs.map ./Rfile
+
+mock_corr.R
+
+mv ./corr.txt ${PREFILE}_mock_only_feature_table/feature-table.good.corr.txt
+#At some point add x-y  plots to the mock_corr.R script
 
 echo "End of script"
 date
