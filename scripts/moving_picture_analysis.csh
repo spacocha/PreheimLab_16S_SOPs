@@ -2,7 +2,7 @@
 #
 #SBATCH --job-name=moving_pictures
 #SBATCH --time=72:00:00
-#SBATCH --ntasks=5
+#SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
 #SBATCH --partition=lrgmem
 #SBATCH --mem-per-cpu=20G
