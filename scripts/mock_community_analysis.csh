@@ -25,9 +25,9 @@ qiime tools export --input-path ${REPS} --output-path ${PREFIX}_rep-seqs
 biom convert -i ${PREFIX}_mock_only_feature_table/feature-table.biom -o ${PREFIX}_mock_only_feature_table/feature-table.biom.txt --table-type "OTU table" --to-tsv
 
 #These will only work if you have the path to scripts dir in PATH variable 
-map2mock.pl ${MOCK} ${PREFIX}_rep-seqs/dna-sequences.fasta > ${PREFIX}_rep-seqs/dna-sequences.map
+map2mock.pl ${MOCKFA} ${PREFIX}_rep-seqs/dna-sequences.fasta > ${PREFIX}_rep-seqs/dna-sequences.map
 
-map2mock_mat.pl ${PREFIX}_rep-seqs/dna-sequences.map ${PREFIX}_mock_only_feature_table/feature-table.biom.txt ${FULLCONCS} > ${PREFIX}_mock_only_feature_table/feature-table.biom.fullconcs.map
+map2mock_mat.pl ${PREFIX}_rep-seqs/dna-sequences.map ${PREFIX}_mock_only_feature_table/feature-table.biom.txt ${MOCKFULL} > ${PREFIX}_mock_only_feature_table/feature-table.biom.fullconcs.map
 
 cp ${PREFIX}_mock_only_feature_table/feature-table.biom.fullconcs.map ./Rfile
 
@@ -35,7 +35,7 @@ mock_corr.R
 
 mv ./corr.txt ${PREFILE}_mock_only_feature_table/feature-table.full.corr.txt
 
-map2mock_mat.pl ${PREFIX}_rep-seqs/dna-sequences.map ${PREFIX}_mock_only_feature_table/feature-table.biom.txt ${GOODCONCS} > ${PREFIX}_mock_only_feature_table/feature-table.biom.goodconcs.map
+map2mock_mat.pl ${PREFIX}_rep-seqs/dna-sequences.map ${PREFIX}_mock_only_feature_table/feature-table.biom.txt ${MOCKGOOD} > ${PREFIX}_mock_only_feature_table/feature-table.biom.goodconcs.map
 
 cp ${PREFIX}_mock_only_feature_table/feature-table.biom.goodconcs.map ./Rfile
 
