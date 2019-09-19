@@ -12,6 +12,11 @@ module load qiime2/2018.8
 
 source ./moving_picture_analysis.config
 
+#get proper classifier
+
+wget http://data.qiime2.org/2018.8/common/gg-13-8-99-515-806-nb-classifier.qza
+$CLASSI=gg-13-8-99-515-806-nb-classifier.qza
+
 #echo the time for each
 echo "Starting moving picture tutorial analysis"
 date
