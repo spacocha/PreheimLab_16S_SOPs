@@ -12,7 +12,7 @@ module load qiime2/2018.8
 #cp single_config.txt to this folder
 #edit variables according to analysis
 #save them and this will use those in this analysis
-source ./paired_config.txt
+source ./emp_paired_end_script.config
 
 #echo the time for each
 echo "Starting qiime2 analysis"
