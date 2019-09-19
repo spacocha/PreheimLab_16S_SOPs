@@ -2,7 +2,7 @@
 #
 #SBATCH --job-name=moving_pictures
 #SBATCH --time=72:00:00
-#SBATCH --ntasks=1
+#SBATCH --ntasks=5
 #SBATCH --cpus-per-task=1
 #SBATCH --partition=lrgmem
 #SBATCH --mem-per-cpu=20G
@@ -21,7 +21,7 @@ date
 echo "Starting alignment and tree"
 date
 
-qiime phylogeny align-to-tree-mafft-fasttree --i-sequences ${REPS} --o-alignment ${PREFIX}_aligned-rep-seqs.qza --o-masked-alignment ${PREFIX}_masked-aligned-rep-seqs.qza --o-tree ${PREFIX}_unrooted-tree.qza --o-rooted-tree ${PREFIX}_rooted-tree.qza
+qiime phylogeny align-to-tree-mafft-fasttree --i-sequences ${REPS} --p-n-threads 0 --o-alignment ${PREFIX}_aligned-rep-seqs.qza --o-masked-alignment ${PREFIX}_masked-aligned-rep-seqs.qza --o-tree ${PREFIX}_unrooted-tree.qza --o-rooted-tree ${PREFIX}_rooted-tree.qza
 
 #alpha diversity
 echo "Starting alpha diversity"
@@ -32,6 +32,7 @@ qiime diversity core-metrics-phylogenetic \
   --i-table ${TABLE} \
   --p-sampling-depth ${DEPTH} \
   --m-metadata-file ${METADATA} \
+  --p-n-jobs -1 \
   --output-dir ${PREFIX}_core-metrics-results
 
 #group significance
@@ -79,6 +80,7 @@ date
 qiime feature-classifier classify-sklearn \
   --i-classifier ${CLASSI} \
   --i-reads ${REPS} \
+  --p-n-jobs -1
   --o-classification ${PREFIX}_taxonomy.qza
 
 qiime metadata tabulate \
