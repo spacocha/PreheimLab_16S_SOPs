@@ -16,16 +16,16 @@ source ./mock_community_analysis.config
 echo "Starting mock community analysis"
 date
 
-qiime tools export ${TABLE} --output-dir ${PREFIX}_feature_table
+qiime tools export --input-path ${TABLE} --output-path ${PREFIX}_feature_table
 
-qiime tools export ${REPS} --output-dir ${PREFIX}_rep-seqs
+qiime tools export --input-path ${REPS} --output-path ${PREFIX}_rep-seqs
 
 biom convert -i ${PREFIX}_feature_table/feature-table.biom -o ${PREFIX}_feature_table/feature-table.biom.txt --table-type "OTU table" --to-tsv
 
 #These will only work if you have the path to scripts dir in PATH variable 
-perl map2mock.pl ${MOCK} ${PREFIX}_rep-seqs/dna-sequences.fasta > ${PREFIX}_rep-seqs/dna-sequences.map
+map2mock.pl ${MOCK} ${PREFIX}_rep-seqs/dna-sequences.fasta > ${PREFIX}_rep-seqs/dna-sequences.map
 
-perl map2mock_mat.pl ${PREFIX}_rep-seqs/dna-sequences.map ${PREFIX}_feature_table/feature-table.biom.txt > ${PREFIX}_feature_table/feature-table.biom.map
+map2mock_mat.pl ${PREFIX}_rep-seqs/dna-sequences.map ${PREFIX}_feature_table/feature-table.biom.txt > ${PREFIX}_feature_table/feature-table.biom.map
 
 #Ideally you put some kind of script to make the comparison automatically, not just in excel
 #However, until that point, open the feature-table.biom.map in excell and add the known sequence values
