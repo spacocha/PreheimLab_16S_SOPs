@@ -33,7 +33,7 @@ cp ${PREFIX}_mock_only_feature_table/feature-table.biom.fullconcs.map ./Rfile
 
 mock_corr.R 
 
-mv ./corr.txt ${PREFILE}_mock_only_feature_table/feature-table.full.corr.txt
+mv ./corr.txt ${PREFIX}_mock_only_feature_table/feature-table.full.corr.txt
 
 map2mock_mat.pl ${PREFIX}_rep-seqs/dna-sequences.map ${PREFIX}_mock_only_feature_table/feature-table.biom.txt ${MOCKGOOD} > ${PREFIX}_mock_only_feature_table/feature-table.biom.goodconcs.map
 
@@ -41,7 +41,7 @@ cp ${PREFIX}_mock_only_feature_table/feature-table.biom.goodconcs.map ./Rfile
 
 mock_corr.R
 
-mv ./corr.txt ${PREFILE}_mock_only_feature_table/feature-table.good.corr.txt
+mv ./corr.txt ${PREFIX}_mock_only_feature_table/feature-table.good.corr.txt
 #At some point add x-y  plots to the mock_corr.R script
 
 echo "End of script"
