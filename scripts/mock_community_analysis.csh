@@ -16,9 +16,9 @@ source ./mock_community_analysis.config
 echo "Starting mock community analysis"
 date
 
-qiime feature-table filter-samples --i-table $TABLE --m-metadata-file ${Mock_sample}  --o-filtered-table ${TABLE}_mock_only.qza
+qiime feature-table filter-samples --i-table $TABLE --m-metadata-file ${Mock_sample}  --o-filtered-table ${PREFIX}_mock_only.qza
 
-qiime tools export --input-path ${TABLE}_mock_only.qza --output-path ${PREFIX}_mock_only_feature_table
+qiime tools export --input-path ${PREFIX}_mock_only.qza --output-path ${PREFIX}_mock_only_feature_table
 
 qiime tools export --input-path ${REPS} --output-path ${PREFIX}_rep-seqs
 
