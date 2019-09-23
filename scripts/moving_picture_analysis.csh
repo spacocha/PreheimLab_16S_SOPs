@@ -32,7 +32,6 @@ qiime diversity core-metrics-phylogenetic \
   --i-table ${TABLE} \
   --p-sampling-depth ${DEPTH} \
   --m-metadata-file ${METADATA} \
-  --p-n-jobs 0 \
   --output-dir ${PREFIX}_core-metrics-results
 
 #group significance
@@ -80,7 +79,6 @@ date
 qiime feature-classifier classify-sklearn \
   --i-classifier ${CLASSI} \
   --i-reads ${REPS} \
-  --p-n-jobs 0 \
   --o-classification ${PREFIX}_taxonomy.qza
 
 qiime metadata tabulate \
