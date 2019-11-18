@@ -85,6 +85,12 @@ qiime metadata tabulate \
   --m-input-file ${PREFIX}_taxonomy.qza \
   --o-visualization ${PREFIX}_taxonomy.qzv
 
+qiime taxa barplot \
+	--i-table ${TABLE} \
+	--i-taxonomy ${PREFIX}_taxonomy.qza \
+	--m-metadata-file ${METADATA} \
+	--o-visualization ${PREFIX}_taxonomy_barplots.qzv
+
 echo "End of script"
 date
 
