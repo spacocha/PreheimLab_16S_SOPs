@@ -6,6 +6,7 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --partition=lrgmem
 #SBATCH --mem-per-cpu=20G
+#SBATCH --nodes=1
 
 #load qiime module
 module load qiime2/2018.8
